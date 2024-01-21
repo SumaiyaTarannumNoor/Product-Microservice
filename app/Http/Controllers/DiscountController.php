@@ -18,40 +18,32 @@ class DiscountController extends Controller
     {
         $discounts = Discount::findOrFail($id);
 
-        return response()->json(["statusCode" => 200, "success" => true, "message"=>"Discount showing successfully.","data" => $discounts]);
+        return response()->json(["statusCode" => 200, "success" => true, "message"=>"Discount showing successfully.","data" => $discounts],200);
     }
 
     public function store(Request $request)
     {
-        try {
-            $request->validate([
-                'product_id' => 'nullable|exists:products,id',
-                'is_fixed_discount' => 'required|boolean',
-                'discount_amount' => 'required|string',
-                'start_date' => 'required|date',
-                'end_date' => 'required|date',
-                'status' => 'nullable|boolean',
-                'created_by' => 'required|string|max:255',
-                'updated_by' => 'required|string|max:255',
-            ]);
+   
+        $request->validate([
+            'product_id' => 'nullable|exists:products,id',
+            'is_fixed_discount' => 'required|boolean',
+            'discount_amount' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'status' => 'nullable|boolean',
+            'created_by' => 'nullable|string|max:255',
+            'updated_by' => 'nullable|string|max:255',
+        ]);
 
         $discounts = Discount::create($request->all());
 
-        return response()->json(["statusCode" => 201, "success" => true, "message"=>"Discount created successfully.","data" => $discounts]);
-        }
-        catch (ValidationException $e) {
-            // Handle validation errors
-            return response()->json(["message" => "Validation failed", "errors" => $e->errors(), "statusCode" => 422, "success" => false]);
-
-        } catch (\Exception $e) {
-            // Handle other exceptions
-            return response()->json(["message" => "Error creating discount", "error" => $e->getMessage(), "statusCode" => 500, "success" => false]);
-        }
+        return response()->json(["statusCode" => 201, "success" => true, "message"=>"Discount created successfully.","data" => $discounts], 201);
+    
     }
 
     public function update(Request $request, $id)
     {
-        try {
+    
             $request->validate([
                 'product_id' => 'nullable|exists:products,id',
                 'is_fixed_discount' => 'required|boolean',
@@ -59,23 +51,14 @@ class DiscountController extends Controller
                 'start_date' => 'required|date',
                 'end_date' => 'required|date',
                 'status' => 'nullable|boolean',
-                'created_by' => 'required|string|max:255',
-                'updated_by' => 'required|string|max:255',
+                'created_by' => 'nullable|string|max:255',
+                'updated_by' => 'nullable|string|max:255',
             ]);
 
         $discounts = Discount::findOrFail($id);
         $discounts->update($request->all());
 
-        return response()->json(["statusCode" => 200, "success" => true, "message"=>"Discount updated successfully.","data" => $discounts]);
-        }
-        catch (ValidationException $e) {
-            // Handle validation errors
-            return response()->json(["message" => "Validation failed", "errors" => $e->errors(), "statusCode" => 422, "success" => false]);
-
-        } catch (\Exception $e) {
-            // Handle other exceptions
-            return response()->json(["message" => "Error updating discount", "error" => $e->getMessage(), "statusCode" => 500, "success" => false]);
-        }
+        return response()->json(["statusCode" => 200, "success" => true, "message"=>"Discount updated successfully.","data" => $discounts],200);
     }
 
     public function destroy($id)
@@ -83,6 +66,6 @@ class DiscountController extends Controller
         $discounts = Discount::findOrFail($id);
         $discounts->delete();
 
-        return response()->json(["statusCode" => 204, "success" => true, "message"=>"Discount deleted successfully.","data" => $discounts]);
+        return response()->json(["statusCode" => 204, "success" => true, "message"=>"Discount deleted successfully.","data" => $discounts],204);
     }
 }

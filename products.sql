@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2024 at 09:18 AM
+-- Generation Time: Jan 21, 2024 at 08:08 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -31,8 +31,8 @@ CREATE TABLE `brands` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `browser` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -51,7 +51,12 @@ INSERT INTO `brands` (`id`, `name`, `description`, `created_by`, `updated_by`, `
 (7, 'Huawei', 'good', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 23:41:21', '2024-01-16 23:41:21', 'true'),
 (8, 'Huawei', 'good', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 23:49:35', '2024-01-16 23:49:35', 'true'),
 (9, 'Huawei', 'good', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-17 00:38:56', '2024-01-17 00:38:56', 'true'),
-(10, 'Huawei', 'good', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-17 02:04:21', '2024-01-17 02:04:21', 'true');
+(10, 'Huawei', 'good', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-17 02:04:21', '2024-01-17 02:04:21', 'true'),
+(11, 'Huawei', 'good', 'me', 'me', NULL, NULL, '2024-01-20 23:54:52', '2024-01-20 23:54:52', '0'),
+(12, 'Huawei', 'good', 'me', 'me', NULL, NULL, '2024-01-20 23:57:12', '2024-01-20 23:57:12', '0'),
+(13, 'Huawei', 'good', 'me', 'me', NULL, NULL, '2024-01-20 23:58:07', '2024-01-20 23:58:07', '0'),
+(14, 'Huawei', 'good', 'me', 'me', NULL, NULL, '2024-01-21 00:03:01', '2024-01-21 00:03:01', '0'),
+(15, 'Huawei', 'good', NULL, NULL, NULL, NULL, '2024-01-21 00:06:28', '2024-01-21 00:06:28', '0');
 
 -- --------------------------------------------------------
 
@@ -67,8 +72,8 @@ CREATE TABLE `discounts` (
   `start_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `end_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -82,7 +87,8 @@ CREATE TABLE `discounts` (
 INSERT INTO `discounts` (`id`, `product_id`, `is_fixed_discount`, `discount_amount`, `start_date`, `end_date`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `ip`, `browser`) VALUES
 (1, NULL, 0, '40.00', '2024-01-16', '2024-01-16', 'nice', 'me', 'me', '2024-01-16 03:30:51', '2024-01-16 03:30:51', '0.0.0.0', 'chrome'),
 (2, NULL, 0, '60.00', '2024-01-16', '2024-01-16', 'nice', 'me', 'me', '2024-01-16 03:31:22', '2024-01-16 03:33:41', '0.0.0.0', 'chrome'),
-(4, NULL, 0, '40.00', '2024-01-16', '2024-01-16', 'nice', 'me', 'me', '2024-01-16 21:41:34', '2024-01-16 21:41:34', '0.0.0.0', 'chrome');
+(4, NULL, 0, '40.00', '2024-01-16', '2024-01-16', 'nice', 'me', 'me', '2024-01-16 21:41:34', '2024-01-16 21:41:34', '0.0.0.0', 'chrome'),
+(5, NULL, 0, '40.00', '2024-01-16', '2024-01-16', '1', NULL, NULL, '2024-01-21 00:20:06', '2024-01-21 00:20:06', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -143,8 +149,8 @@ CREATE TABLE `packaging_units` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `modified_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `browser` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -157,7 +163,8 @@ CREATE TABLE `packaging_units` (
 
 INSERT INTO `packaging_units` (`id`, `name`, `status`, `created_by`, `modified_by`, `ip`, `browser`, `created_at`, `updated_at`) VALUES
 (1, 'Dhaka_branch', 'full', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 03:37:26', '2024-01-16 03:37:26'),
-(2, 'laptop', 'useful', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 03:37:40', '2024-01-16 05:08:26');
+(2, 'laptop', 'useful', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 03:37:40', '2024-01-16 05:08:26'),
+(4, 'Dhaka_branch', '1', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-20 23:33:02', '2024-01-20 23:33:02');
 
 -- --------------------------------------------------------
 
@@ -208,8 +215,8 @@ CREATE TABLE `products` (
   `category_id` bigint(20) UNSIGNED DEFAULT NULL,
   `benchmark_line` enum('ATL','BTL','TTL') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'ATL',
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `browser` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -236,7 +243,7 @@ CREATE TABLE `products_meta_data` (
   `product_id` bigint(20) UNSIGNED DEFAULT NULL,
   `image_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `browser` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -262,8 +269,8 @@ CREATE TABLE `product_categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `browser` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -308,8 +315,8 @@ CREATE TABLE `product_items` (
   `closing_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `browser` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -334,8 +341,8 @@ CREATE TABLE `product_marketing_links` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `modified_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `browser` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -469,13 +476,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `discounts`
 --
 ALTER TABLE `discounts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -493,7 +500,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `packaging_units`
 --
 ALTER TABLE `packaging_units`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
