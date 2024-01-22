@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
             $request->validate([
-                'product_key' => 'required|string|max:255|unique:products,product_key,' . $id,
+                'product_key' => 'required|string|max:255|unique:products,product_key,',
                 'product_english_name' => 'required|string|max:255',
                 'product_bengali_name' => 'required|string|max:255',
                 'summary' => 'required|string',
@@ -33,7 +33,7 @@ class ProductController extends Controller
                 'brand_id' => 'required|exists:brands,id',
                 'category_id' => 'required|exists:product_categories,id',
                 'benchmark_line' => 'required|in:ATL,BTL,TTL',
-                'status' => 'nullable|boolean',
+                'status' => 'required|boolean',
                 'created_by' => 'nullable|string|max:255',
                 'updated_by' => 'nullable|string|max:255',
                 'ip' => 'nullable|ip',

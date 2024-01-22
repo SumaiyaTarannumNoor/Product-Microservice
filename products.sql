@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2024 at 08:08 AM
+-- Generation Time: Jan 22, 2024 at 07:40 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -56,7 +56,9 @@ INSERT INTO `brands` (`id`, `name`, `description`, `created_by`, `updated_by`, `
 (12, 'Huawei', 'good', 'me', 'me', NULL, NULL, '2024-01-20 23:57:12', '2024-01-20 23:57:12', '0'),
 (13, 'Huawei', 'good', 'me', 'me', NULL, NULL, '2024-01-20 23:58:07', '2024-01-20 23:58:07', '0'),
 (14, 'Huawei', 'good', 'me', 'me', NULL, NULL, '2024-01-21 00:03:01', '2024-01-21 00:03:01', '0'),
-(15, 'Huawei', 'good', NULL, NULL, NULL, NULL, '2024-01-21 00:06:28', '2024-01-21 00:06:28', '0');
+(15, 'Huawei', 'good', NULL, NULL, NULL, NULL, '2024-01-21 00:06:28', '2024-01-21 00:06:28', '0'),
+(16, 'Huawei', 'good', NULL, NULL, NULL, NULL, '2024-01-21 04:20:14', '2024-01-21 04:20:14', '0'),
+(17, 'Huawei', 'good', NULL, NULL, NULL, NULL, '2024-01-21 04:20:21', '2024-01-21 04:20:21', '0');
 
 -- --------------------------------------------------------
 
@@ -88,7 +90,8 @@ INSERT INTO `discounts` (`id`, `product_id`, `is_fixed_discount`, `discount_amou
 (1, NULL, 0, '40.00', '2024-01-16', '2024-01-16', 'nice', 'me', 'me', '2024-01-16 03:30:51', '2024-01-16 03:30:51', '0.0.0.0', 'chrome'),
 (2, NULL, 0, '60.00', '2024-01-16', '2024-01-16', 'nice', 'me', 'me', '2024-01-16 03:31:22', '2024-01-16 03:33:41', '0.0.0.0', 'chrome'),
 (4, NULL, 0, '40.00', '2024-01-16', '2024-01-16', 'nice', 'me', 'me', '2024-01-16 21:41:34', '2024-01-16 21:41:34', '0.0.0.0', 'chrome'),
-(5, NULL, 0, '40.00', '2024-01-16', '2024-01-16', '1', NULL, NULL, '2024-01-21 00:20:06', '2024-01-21 00:20:06', NULL, NULL);
+(5, NULL, 0, '40.00', '2024-01-16', '2024-01-16', '1', NULL, NULL, '2024-01-21 00:20:06', '2024-01-21 00:20:06', NULL, NULL),
+(6, NULL, 0, '40.00', '2024-01-16', '2024-01-16', '1', NULL, NULL, '2024-01-21 04:20:24', '2024-01-21 04:20:24', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -211,8 +214,8 @@ CREATE TABLE `products` (
   `summary` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_book` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `marketing_communication_link_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `brand_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `brand_id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) UNSIGNED NOT NULL,
   `benchmark_line` enum('ATL','BTL','TTL') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'ATL',
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -228,9 +231,13 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `product_key`, `product_english_name`, `product_bengali_name`, `summary`, `product_book`, `marketing_communication_link_id`, `brand_id`, `category_id`, `benchmark_line`, `status`, `created_by`, `updated_by`, `ip`, `browser`, `created_at`, `updated_at`) VALUES
-(1, '23-434-545', 'sKJASAA', 'sjd', 'good product', 'er', 'www.ssk', NULL, NULL, 'ATL', 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 21:31:12', '2024-01-16 23:03:20'),
-(2, '23-434-545', 'dss', 'sjd', 'good product', 'er', 'www.ssk', NULL, NULL, 'ATL', 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 23:02:29', '2024-01-16 23:02:29'),
-(4, '23-434-545', 'dss', 'sjd', 'good product', 'er', 'www.ssk', NULL, NULL, 'ATL', 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 23:02:32', '2024-01-16 23:02:32');
+(1, '23-434-545', 'sKJASAA', 'sjd', 'good product', 'er', 'www.ssk', 0, 0, 'ATL', 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 21:31:12', '2024-01-16 23:03:20'),
+(2, '23-434-545', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 0, 0, 'ATL', 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 23:02:29', '2024-01-16 23:02:29'),
+(4, '23-434-545', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 0, 0, 'ATL', 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 23:02:32', '2024-01-16 23:02:32'),
+(5, '545', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 1, 4, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:32:02', '2024-01-22 00:32:02'),
+(6, '546', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 1, 4, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:37:04', '2024-01-22 00:37:04'),
+(7, '547', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 1, 4, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:37:14', '2024-01-22 00:37:14'),
+(8, '549', 'test to add', 'sjd', 'good product', 'er', 'www.ssk', 1, 4, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:37:25', '2024-01-22 00:37:25');
 
 -- --------------------------------------------------------
 
@@ -476,13 +483,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `discounts`
 --
 ALTER TABLE `discounts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -512,7 +519,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `products_meta_data`
