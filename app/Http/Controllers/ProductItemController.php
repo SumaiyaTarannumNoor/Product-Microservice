@@ -24,7 +24,7 @@ class ProductItemController extends Controller
     public function store(Request $request)
     {
             $request->validate([
-                'erp_id' => 'required|exists:your_erp_table,id',
+                'erp_id' => 'required|string|max:255',
                 'product_id' => 'required|exists:products,id',
                 'sku_number' => 'required|string|max:255',
                 'distribution_price' => 'required|string',
@@ -56,7 +56,7 @@ class ProductItemController extends Controller
     {
    
             $request->validate([
-                'erp_id' => 'required|exists:your_erp_table,id',
+                'erp_id' => 'required',
                 'product_id' => 'required|exists:products,id',
                 'sku_number' => 'required|string|max:255',
                 'distribution_price' => 'required|string',

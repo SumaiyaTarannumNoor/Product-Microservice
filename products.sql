@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2024 at 07:40 AM
+-- Generation Time: Jan 22, 2024 at 12:06 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -237,7 +237,10 @@ INSERT INTO `products` (`id`, `product_key`, `product_english_name`, `product_be
 (5, '545', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 1, 4, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:32:02', '2024-01-22 00:32:02'),
 (6, '546', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 1, 4, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:37:04', '2024-01-22 00:37:04'),
 (7, '547', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 1, 4, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:37:14', '2024-01-22 00:37:14'),
-(8, '549', 'test to add', 'sjd', 'good product', 'er', 'www.ssk', 1, 4, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:37:25', '2024-01-22 00:37:25');
+(8, '549', 'test to add', 'sjd', 'good product', 'er', 'www.ssk', 1, 4, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:37:25', '2024-01-22 00:37:25'),
+(9, 'test', 'test', 'test', 'ikyu', 'daf', 'sddsf', 14, 5, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:59:47', '2024-01-22 00:59:47'),
+(10, 'testf', 'test', 'test', 'nn', 'daf', 'sddsf', 6, 5, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 04:02:33', '2024-01-22 04:02:33'),
+(11, '984847nb', 'test', 'test', 'hj', 'daf', 'sddsf', 4, 5, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 04:09:30', '2024-01-22 04:09:30');
 
 -- --------------------------------------------------------
 
@@ -304,8 +307,8 @@ INSERT INTO `product_categories` (`id`, `name`, `status`, `created_by`, `updated
 
 CREATE TABLE `product_items` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `erp_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `product_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `erp_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
   `sku_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `distribution_price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `trade_price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -335,8 +338,16 @@ CREATE TABLE `product_items` (
 --
 
 INSERT INTO `product_items` (`id`, `erp_id`, `product_id`, `sku_number`, `distribution_price`, `trade_price`, `weight_per_unit`, `packing_unit_id`, `selling_pack_size`, `selling_cartoon_size`, `is_new_product`, `is_offer_running`, `is_distribution_git_available`, `is_sms_active`, `is_product_in_stock`, `opening_date`, `closing_date`, `is_active`, `status`, `created_by`, `updated_by`, `ip`, `browser`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, '45600', '339', '2738', '100g', NULL, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 22:15:38', '2024-01-16 22:15:38'),
-(2, NULL, NULL, '8900000', '339', '2738', '100g', NULL, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 22:15:40', '2024-01-16 22:17:25');
+(1, '0', 0, '45600', '339', '2738', '100g', NULL, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 22:15:38', '2024-01-16 22:15:38'),
+(2, '0', 0, '8900000', '339', '2738', '100g', NULL, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 22:15:40', '2024-01-16 22:17:25'),
+(4, '2', 11, '45600', '339', '2738', '100g', 1, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 04:31:32', '2024-01-22 04:31:32'),
+(5, '2', 11, '45600', '339', '2738', '100g', 1, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 04:33:11', '2024-01-22 04:33:11'),
+(6, '1', 11, '45600', '339', '2738', '100g', 1, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 04:33:17', '2024-01-22 04:33:17'),
+(7, '1', 11, '45600', '339', '2738', '100g', 1, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 04:38:43', '2024-01-22 04:38:43'),
+(8, '1', 11, '44', '12', '52', '345', 1, '45', '345', 1, 1, 1, 1, 1, '2024-01-22', '2024-01-22', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 04:39:12', '2024-01-22 04:39:12'),
+(9, '5', 11, '44', '12', '52', '345', 1, '45', '345', 1, 1, 1, 1, 1, '2024-01-22', '2024-01-22', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 04:40:07', '2024-01-22 04:40:07'),
+(10, 'abc45', 11, '45600', '339', '2738', '100g', 1, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 04:43:30', '2024-01-22 04:43:30'),
+(11, '8', 11, '44', '12', '52', '345', 1, '45', '345', 1, 1, 1, 1, 1, '2024-01-22', '2024-01-22', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 05:02:16', '2024-01-22 05:02:16');
 
 -- --------------------------------------------------------
 
@@ -519,7 +530,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `products_meta_data`
@@ -537,7 +548,7 @@ ALTER TABLE `product_categories`
 -- AUTO_INCREMENT for table `product_items`
 --
 ALTER TABLE `product_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `product_marketing_links`
