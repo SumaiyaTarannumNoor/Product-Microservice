@@ -35,3 +35,14 @@ Route::resource('products', ProductController::class);
 Route::resource('product_items', ProductItemController::class);
 Route::resource('product_marketing_links', ProductMarketingLinkController::class);
 Route::resource('products_meta_data', ProductMetaDataController::class);
+
+//Status Change
+Route::get('/brandStatusChange/{id}', [BrandController::class, 'StatusChange']);
+Route::get('/discountStatusChange/{id}', [DiscountController::class, 'StatusChange']);
+Route::get('/packagingUnitStatusChange/{id}', [PackagingUnitController::class, 'StatusChange']);
+Route::get('/productStatusChange/{id}', [ProductController::class, 'StatusChange']);
+Route::get('/productCategoryStatusChange/{id}', [ProductCategoryController::class, 'StatusChange']);
+Route::get('/productItemStatusChange/{id}', [ProductItemController::class, 'StatusChange']);
+Route::get('/productMetaDataStatusChange/{id}', [ProductMetaDataController::class, 'StatusChange']);
+
+

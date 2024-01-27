@@ -11,22 +11,25 @@ class ProductCategoryController extends Controller
     {
         $productCategory = ProductCategory::all();
 
-        return response()->json(["statusCode" => 200, "success" => true, "message"=>"Packaging Categories showing successfully.","data" => $productCategory], 200);
+        return response()->json(["statusCode" => 200, "success" => true, "message"=>"All Product Categories showing successfully.","data" => $productCategory],200);
 
+        $productCategory = $productCategory->map(function ($productCategory) {$productCategory['status'] = (bool) $productCategory['status'];
+            return $productCategory;
+        });
     }
 
     public function show($id)
     {
         $productCategory = ProductCategory::findOrFail($id);
 
-        return response()->json(["statusCode" => 200, "success" => true, "message"=>"Packaging Category showing successfully.","data" => $productCategory], 200);
+        return response()->json(["statusCode" => 200, "success" => true, "message"=>"Product Category showing successfully.","data" => $productCategory], 200);
     }
 
     public function store(Request $request)
     {
             $request->validate([
                 'name' => 'required|string|max:255',
-                'status' => 'nullable|boolean',
+                'status' => 'nullable|string',
                 'created_by' => 'nullable|string|max:255',
                 'updated_by' => 'nullable|string|max:255',
                 'ip' => 'nullable|ip',
@@ -35,7 +38,7 @@ class ProductCategoryController extends Controller
 
         $productCategory = ProductCategory::create($request->all());
 
-        return response()->json(["statusCode" => 201, "success" => true, "message"=>"Packaging Category created successfully.","data" => $productCategory],201);
+        return response()->json(["statusCode" => 201, "success" => true, "message"=>"Product Category created successfully.","data" => $productCategory],201);
 
     }
 
@@ -44,7 +47,7 @@ class ProductCategoryController extends Controller
     
             $request->validate([
                 'name' => 'required|string|max:255',
-                'status' => 'nullable|boolean',
+                'status' => 'nullable|string',
                 'created_by' => 'nullable|string|max:255',
                 'updated_by' => 'nullable|string|max:255',
                 'ip' => 'nullable|ip',
@@ -54,14 +57,26 @@ class ProductCategoryController extends Controller
         $productCategory = ProductCategory::findOrFail($id);
         $productCategory->update($request->all());
 
-        return response()->json(["statusCode" => 200, "success" => true, "message"=>"Packaging Category updated successfully.","data" => $productCategory],200);
+        return response()->json(["statusCode" => 200, "success" => true, "message"=>"Product Category updated successfully.","data" => $productCategory],200);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $productCategory = ProductCategory::findOrFail($id);
         $productCategory->delete();
 
-        return response()->json(["statusCode" => 204, "success" => true, "message"=>"Packaging Category deleted successfully.","data" => $productCategory],204);
+        return response()->json(["statusCode" => 204, "success" => true, "message"=>"Product Category deleted successfully.","data" => $productCategory],204);
+    }
+
+    public function StatusChange($id)
+    {
+        $productCategory = ProductCategory::find($id);
+        $productCategory->update(['status' => !$productCategory->status]);
+
+        $true = true;
+
+        $false = false;
+
+        return $productCategory->refresh();
     }
 }

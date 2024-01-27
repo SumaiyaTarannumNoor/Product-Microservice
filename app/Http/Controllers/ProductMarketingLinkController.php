@@ -12,6 +12,7 @@ class ProductMarketingLinkController extends Controller
         $productMarketingLinks = ProductMarketingLink::with("product")->get();
 
         return response()->json(["statusCode" => 200, "success" => true, "message"=>"Product marketing links showing successfully.","data" => $productMarketingLinks],200);
+
     }
 
     public function show($id)
@@ -62,4 +63,5 @@ class ProductMarketingLinkController extends Controller
 
         return response()->json(["statusCode" => 204, "success" => true, "message"=>"Product marketing link deleted successfully.","data" => $productMarketingLinks],204);
     }
+
 }

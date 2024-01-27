@@ -26,6 +26,11 @@ class Product extends Model
         'browser',
     ];
 
+    public function getStatusAttribute($value)
+    {
+        return $value == 1 ? true : false;
+    }
+
     public function brand()
     {
         return $this->belongsTo(Brand::class);
@@ -53,6 +58,6 @@ class Product extends Model
 
     public function productcategory()
     {
-        return $this->belongsTo(ProductCategory::class);
+        return $this->belongsTo(ProductCategory::class, 'category_id');
     }
 }

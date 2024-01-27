@@ -12,6 +12,10 @@ class PackagingUnitController extends Controller
         $packagingUnits = PackagingUnit::with("product")->get();
 
         return response()->json(["statusCode" => 200, "success" => true, "message"=>"Packaging Units showing successfully.","data" => $packagingUnits],200);
+
+        $packagingUnits = $packagingUnits->map(function ($packagingUnits) {$packagingUnits['status'] = (bool) $packagingUnits['status'];
+            return $packagingUnits;
+        });
     }
 
     public function show($id)
@@ -26,7 +30,7 @@ class PackagingUnitController extends Controller
 
             $request->validate([
                 'name' => 'required|string|max:255',
-                'status' => 'nullable|boolean',
+                'status' => 'nullable|string',
                 'created_by' => 'nullable|string|max:255',
                 'modified_by' => 'nullable|string|max:255',
                 'ip' => 'nullable|ip',
@@ -44,7 +48,7 @@ class PackagingUnitController extends Controller
    
             $request->validate([
                 'name' => 'required|string|max:255',
-                'status' => 'nullable|boolean',
+                'status' => 'nullable|string',
                 'created_by' => 'nullable|string|max:255',
                 'modified_by' => 'nullable|string|max:255',
                 'ip' => 'nullable|ip',
@@ -59,12 +63,24 @@ class PackagingUnitController extends Controller
 
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $packagingUnits = PackagingUnit::findOrFail($id);
         $packagingUnits->delete();
 
         return response()->json(["statusCode" => 204, "success" => true, "message"=>"Packaging Unit deleted successfully.","data" => $packagingUnits], 204);
 
+    }
+
+    public function StatusChange($id)
+    {
+        $packagingUnits = PackagingUnit::find($id);
+        $packagingUnits->update(['status' => !$packagingUnits->status]);
+
+        $true = true;
+
+        $false = false;
+
+        return $packagingUnits->refresh();
     }
 }

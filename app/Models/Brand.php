@@ -19,6 +19,11 @@ class Brand extends Model
         'browser',
     ];
 
+    public function getStatusAttribute($value)
+    {
+        return $value == 1 ? true : false;
+    }
+
     public function product()
     {
         return $this->hasMany(Product::class);

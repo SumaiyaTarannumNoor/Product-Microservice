@@ -11,7 +11,12 @@ class BrandController extends Controller
     {
         $brands = Brand::with("product")->get();
 
+
         return response()->json(["statusCode" => 200, "success" => true, "message"=>"All brands showing successfully.","data" => $brands],200);
+
+        $brands = $brands->map(function ($brands) {$brands['status'] = (bool) $brands['status'];
+            return $brands;
+        });
     }
 
     public function show($id)
@@ -27,6 +32,7 @@ class BrandController extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
                 'description' => 'required|string',
+                'status' => 'nullable|string',
                 'created_by' => 'nullable|string|max:255',
                 'updated_by' => 'nullable|string|max:255',
                 'ip' => 'nullable|ip',
@@ -44,6 +50,7 @@ class BrandController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
+            'status' => 'nullable|string',
             'created_by' => 'nullable|string|max:255',
             'updated_by' => 'nullable|string|max:255',
             'ip' => 'nullable|ip',
@@ -62,5 +69,17 @@ class BrandController extends Controller
         $brands->delete();
 
         return response()->json(["statusCode" => 204, "success" => true, "message"=>"Brand deleted successfully.","data" => $brands],204);
+    }
+
+    public function StatusChange($id)
+    {
+        $brands = Brand::find($id);
+        $brands->update(['status' => !$brands->status]);
+
+        $true = true;
+
+        $false = false;
+
+        return $brands->refresh();
     }
 }

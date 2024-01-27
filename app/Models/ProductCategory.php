@@ -17,8 +17,12 @@ class ProductCategory extends Model
         'ip',
         'browser',
     ];
+    public function getStatusAttribute($value)
+    {
+        return $value == 1 ? true : false;
+    }
 
-    public function products()
+    public function product()
     {
         return $this->hasMany(Product::class);
     }

@@ -9,9 +9,13 @@ class ProductItemController extends Controller
 {
     public function index()
     {
-        $productItems = ProductItem::with("product")->get();
+        $productItems = ProductItem::with(["product"])->get();
 
         return response()->json(["statusCode" => 200, "success" => true, "message"=>"Product items showing successfully.","data" => $productItems],200);
+
+        $productItems = $productItems->map(function ($productItems) {$productItems['status'] = (bool) $productItems['status'];
+            return $productItems;
+        });
     }
 
     public function show($id)
@@ -39,9 +43,9 @@ class ProductItemController extends Controller
                 'is_sms_active' => 'required|boolean',
                 'is_product_in_stock' => 'required|boolean',
                 'opening_date' => 'required|date',
-                'closing_date' => 'required|date',
+                'closing_date' => 'nullable|date',
                 'is_active' => 'required|boolean',
-                'status' => 'nullable|boolean',
+                'status' => 'nullable|string',
                 'created_by' => 'nullable|string|max:255',
                 'updated_by' => 'nullable|string|max:255',
                 'ip' => 'nullable|ip',
@@ -73,7 +77,7 @@ class ProductItemController extends Controller
                 'opening_date' => 'required|date',
                 'closing_date' => 'required|date',
                 'is_active' => 'required|boolean',
-                'status' => 'nullable|boolean',
+                'status' => 'nullable|string',
                 'created_by' => 'nullable|string|max:255',
                 'updated_by' => 'nullable|string|max:255',
                 'ip' => 'nullable|ip',
@@ -92,5 +96,17 @@ class ProductItemController extends Controller
         $productItems->delete();
 
         return response()->json(["statusCode" => 204, "success" => true, "message"=>"Product item deleted successfully.","data" => $productItems],204);
+    }
+
+    public function StatusChange($id)
+    {
+        $productItems = ProductItem::find($id);
+        $productItems->update(['status' => !$productItems->status]);
+
+        $true = true;
+
+        $false = false;
+
+        return $productItems->refresh();
     }
 }

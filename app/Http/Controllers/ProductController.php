@@ -12,11 +12,16 @@ class ProductController extends Controller
         $products = Product::with(["brand", "discount", "productitem", "productmetadata", "productmarketinglink", "productcategory"])->get();
 
         return response()->json(["statusCode" => 200, "success" => true, "message"=>"Products showing successfully.","data" => $products],200);
+
+        $products = $products->map(function ($products) {$products['status'] = (bool) $products['status'];
+            return $products;
+        });
     }
 
     public function show($id)
     {
         $products = Product::findOrFail($id);
+        $products = Product::with(["brand", "discount", "productitem", "productmetadata", "productmarketinglink", "productcategory"])->get();
 
         return response()->json(["statusCode" => 200, "success" => true, "message"=>"Product showing successfully.","data" => $products],200);
     }
@@ -33,7 +38,7 @@ class ProductController extends Controller
                 'brand_id' => 'required|exists:brands,id',
                 'category_id' => 'required|exists:product_categories,id',
                 'benchmark_line' => 'required|in:ATL,BTL,TTL',
-                'status' => 'required|boolean',
+                'status' => 'nullable|string',
                 'created_by' => 'nullable|string|max:255',
                 'updated_by' => 'nullable|string|max:255',
                 'ip' => 'nullable|ip',
@@ -56,7 +61,7 @@ class ProductController extends Controller
                 'brand_id' => 'required|exists:brands,id',
                 'category_id' => 'required|exists:product_categories,id',
                 'benchmark_line' => 'required|in:ATL,BTL,TTL',
-                'status' => 'nullable|boolean',
+                'status' => 'nullable|string',
                 'created_by' => 'nullable|string|max:255',
                 'updated_by' => 'nullable|string|max:255',
                 'ip' => 'nullable|ip',
@@ -75,5 +80,17 @@ class ProductController extends Controller
         $products->delete();
 
         return response()->json(["statusCode" => 204, "success" => true, "message"=>"Product deleted successfully.","data" => $products],204);
+    }
+
+    public function StatusChange($id)
+    {
+        $products = Product::find($id);
+        $products->update(['status' => !$products->status]);
+
+        $true = true;
+
+        $false = false;
+
+        return $products->refresh();
     }
 }

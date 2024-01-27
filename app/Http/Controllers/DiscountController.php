@@ -12,6 +12,10 @@ class DiscountController extends Controller
         $discounts = Discount::with("product")->get();
 
         return response()->json(["statusCode" => 200, "success" => true, "message"=>"All discounts showing successfully.","data" => $discounts]);
+
+        $discounts = $discounts->map(function ($discounts) {$discounts['status'] = (bool) $discounts['status'];
+            return $discounts;
+        });
     }
 
     public function show($id)
@@ -30,9 +34,11 @@ class DiscountController extends Controller
             'discount_amount' => 'required|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
-            'status' => 'nullable|boolean',
+            'status' => 'nullable|string',
             'created_by' => 'nullable|string|max:255',
             'updated_by' => 'nullable|string|max:255',
+            'ip' => 'nullable|ip',
+            'browser' => 'nullable|string|max:255',
         ]);
 
         $discounts = Discount::create($request->all());
@@ -50,9 +56,11 @@ class DiscountController extends Controller
                 'discount_amount' => 'required|string',
                 'start_date' => 'required|date',
                 'end_date' => 'required|date',
-                'status' => 'nullable|boolean',
+                'status' => 'nullable|string',
                 'created_by' => 'nullable|string|max:255',
                 'updated_by' => 'nullable|string|max:255',
+                'ip' => 'nullable|ip',
+                'browser' => 'nullable|string|max:255',
             ]);
 
         $discounts = Discount::findOrFail($id);
@@ -67,5 +75,17 @@ class DiscountController extends Controller
         $discounts->delete();
 
         return response()->json(["statusCode" => 204, "success" => true, "message"=>"Discount deleted successfully.","data" => $discounts],204);
+    }
+
+    public function StatusChange($id)
+    {
+        $discounts = Discount::find($id);
+        $discounts->update(['status' => !$discounts->status]);
+
+        $true = true;
+
+        $false = false;
+
+        return $discounts->refresh();
     }
 }
