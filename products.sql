@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2024 at 12:06 PM
+-- Generation Time: Feb 03, 2024 at 10:12 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -37,7 +37,7 @@ CREATE TABLE `brands` (
   `browser` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0'
+  `status` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -45,20 +45,7 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`id`, `name`, `description`, `created_by`, `updated_by`, `ip`, `browser`, `created_at`, `updated_at`, `status`) VALUES
-(1, 'Huawei', 'good', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 03:07:21', '2024-01-16 03:07:21', 'true'),
-(4, 'Huawei', 'good', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 21:39:23', '2024-01-16 21:39:23', 'true'),
-(6, 'Huawei', 'good', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 23:33:38', '2024-01-16 23:33:38', 'true'),
-(7, 'Huawei', 'good', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 23:41:21', '2024-01-16 23:41:21', 'true'),
-(8, 'Huawei', 'good', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 23:49:35', '2024-01-16 23:49:35', 'true'),
-(9, 'Huawei', 'good', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-17 00:38:56', '2024-01-17 00:38:56', 'true'),
-(10, 'Huawei', 'good', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-17 02:04:21', '2024-01-17 02:04:21', 'true'),
-(11, 'Huawei', 'good', 'me', 'me', NULL, NULL, '2024-01-20 23:54:52', '2024-01-20 23:54:52', '0'),
-(12, 'Huawei', 'good', 'me', 'me', NULL, NULL, '2024-01-20 23:57:12', '2024-01-20 23:57:12', '0'),
-(13, 'Huawei', 'good', 'me', 'me', NULL, NULL, '2024-01-20 23:58:07', '2024-01-20 23:58:07', '0'),
-(14, 'Huawei', 'good', 'me', 'me', NULL, NULL, '2024-01-21 00:03:01', '2024-01-21 00:03:01', '0'),
-(15, 'Huawei', 'good', NULL, NULL, NULL, NULL, '2024-01-21 00:06:28', '2024-01-21 00:06:28', '0'),
-(16, 'Huawei', 'good', NULL, NULL, NULL, NULL, '2024-01-21 04:20:14', '2024-01-21 04:20:14', '0'),
-(17, 'Huawei', 'good', NULL, NULL, NULL, NULL, '2024-01-21 04:20:21', '2024-01-21 04:20:21', '0');
+(19, 'PUSTI HAPPY TIME', 'PUSTI HAPPY TIME', NULL, NULL, NULL, NULL, '2024-01-23 23:41:54', '2024-01-24 22:59:58', 0);
 
 -- --------------------------------------------------------
 
@@ -73,7 +60,7 @@ CREATE TABLE `discounts` (
   `discount_amount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `end_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `status` tinyint(1) DEFAULT 0,
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -87,11 +74,8 @@ CREATE TABLE `discounts` (
 --
 
 INSERT INTO `discounts` (`id`, `product_id`, `is_fixed_discount`, `discount_amount`, `start_date`, `end_date`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `ip`, `browser`) VALUES
-(1, NULL, 0, '40.00', '2024-01-16', '2024-01-16', 'nice', 'me', 'me', '2024-01-16 03:30:51', '2024-01-16 03:30:51', '0.0.0.0', 'chrome'),
-(2, NULL, 0, '60.00', '2024-01-16', '2024-01-16', 'nice', 'me', 'me', '2024-01-16 03:31:22', '2024-01-16 03:33:41', '0.0.0.0', 'chrome'),
-(4, NULL, 0, '40.00', '2024-01-16', '2024-01-16', 'nice', 'me', 'me', '2024-01-16 21:41:34', '2024-01-16 21:41:34', '0.0.0.0', 'chrome'),
-(5, NULL, 0, '40.00', '2024-01-16', '2024-01-16', '1', NULL, NULL, '2024-01-21 00:20:06', '2024-01-21 00:20:06', NULL, NULL),
-(6, NULL, 0, '40.00', '2024-01-16', '2024-01-16', '1', NULL, NULL, '2024-01-21 04:20:24', '2024-01-21 04:20:24', NULL, NULL);
+(8, 17, 0, '80', '2024-01-15', '2024-01-31', 1, NULL, NULL, '2024-01-23 23:57:08', '2024-01-24 23:17:05', NULL, NULL),
+(9, NULL, 0, '40.00', '2024-01-16', '2024-01-16', NULL, NULL, NULL, '2024-01-24 03:40:58', '2024-01-24 03:40:58', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -151,7 +135,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE `packaging_units` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `status` tinyint(1) DEFAULT 0,
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -165,9 +149,8 @@ CREATE TABLE `packaging_units` (
 --
 
 INSERT INTO `packaging_units` (`id`, `name`, `status`, `created_by`, `modified_by`, `ip`, `browser`, `created_at`, `updated_at`) VALUES
-(1, 'Dhaka_branch', 'full', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 03:37:26', '2024-01-16 03:37:26'),
-(2, 'laptop', 'useful', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 03:37:40', '2024-01-16 05:08:26'),
-(4, 'Dhaka_branch', '1', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-20 23:33:02', '2024-01-20 23:33:02');
+(6, 'Tonne', 0, NULL, NULL, NULL, NULL, '2024-01-23 23:45:12', '2024-01-23 23:45:12'),
+(7, 'Liter', 0, NULL, NULL, NULL, NULL, '2024-01-23 23:45:23', '2024-01-23 23:45:23');
 
 -- --------------------------------------------------------
 
@@ -217,7 +200,7 @@ CREATE TABLE `products` (
   `brand_id` bigint(20) UNSIGNED NOT NULL,
   `category_id` bigint(20) UNSIGNED NOT NULL,
   `benchmark_line` enum('ATL','BTL','TTL') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'ATL',
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `status` tinyint(1) DEFAULT 0,
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -231,16 +214,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `product_key`, `product_english_name`, `product_bengali_name`, `summary`, `product_book`, `marketing_communication_link_id`, `brand_id`, `category_id`, `benchmark_line`, `status`, `created_by`, `updated_by`, `ip`, `browser`, `created_at`, `updated_at`) VALUES
-(1, '23-434-545', 'sKJASAA', 'sjd', 'good product', 'er', 'www.ssk', 0, 0, 'ATL', 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 21:31:12', '2024-01-16 23:03:20'),
-(2, '23-434-545', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 0, 0, 'ATL', 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 23:02:29', '2024-01-16 23:02:29'),
-(4, '23-434-545', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 0, 0, 'ATL', 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 23:02:32', '2024-01-16 23:02:32'),
-(5, '545', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 1, 4, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:32:02', '2024-01-22 00:32:02'),
-(6, '546', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 1, 4, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:37:04', '2024-01-22 00:37:04'),
-(7, '547', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 1, 4, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:37:14', '2024-01-22 00:37:14'),
-(8, '549', 'test to add', 'sjd', 'good product', 'er', 'www.ssk', 1, 4, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:37:25', '2024-01-22 00:37:25'),
-(9, 'test', 'test', 'test', 'ikyu', 'daf', 'sddsf', 14, 5, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 00:59:47', '2024-01-22 00:59:47'),
-(10, 'testf', 'test', 'test', 'nn', 'daf', 'sddsf', 6, 5, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 04:02:33', '2024-01-22 04:02:33'),
-(11, '984847nb', 'test', 'test', 'hj', 'daf', 'sddsf', 4, 5, 'ATL', '1', NULL, NULL, NULL, NULL, '2024-01-22 04:09:30', '2024-01-22 04:09:30');
+(17, 'WATER.500 ML', 'WATER.500 ML', 'ড্রিংকিং ওয়াটার ৫০০ মি.লি.', 'This Is New Product.', 'FG.PUSTI.WATER.500ML', 'N/A', 19, 17, 'TTL', 0, NULL, NULL, NULL, NULL, '2024-01-23 23:50:01', '2024-01-25 01:18:50');
 
 -- --------------------------------------------------------
 
@@ -252,7 +226,7 @@ CREATE TABLE `products_meta_data` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `product_id` bigint(20) UNSIGNED DEFAULT NULL,
   `image_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `status` tinyint(1) DEFAULT 0,
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -266,8 +240,7 @@ CREATE TABLE `products_meta_data` (
 --
 
 INSERT INTO `products_meta_data` (`id`, `product_id`, `image_url`, `status`, `created_by`, `updated_by`, `ip`, `browser`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'http://sasj', 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 22:39:18', '2024-01-16 22:39:18'),
-(2, NULL, 'http://kjdssdk', 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 22:39:20', '2024-01-16 22:41:39');
+(12, 17, 'https://techknowgram.com/static/media/navlogo.af0c3c7e6269ac45867d.png', 1, NULL, NULL, NULL, NULL, '2024-01-23 23:54:58', '2024-01-25 00:29:38');
 
 -- --------------------------------------------------------
 
@@ -278,7 +251,7 @@ INSERT INTO `products_meta_data` (`id`, `product_id`, `image_url`, `status`, `cr
 CREATE TABLE `product_categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `status` tinyint(1) DEFAULT 0,
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -292,12 +265,13 @@ CREATE TABLE `product_categories` (
 --
 
 INSERT INTO `product_categories` (`id`, `name`, `status`, `created_by`, `updated_by`, `ip`, `browser`, `created_at`, `updated_at`) VALUES
-(4, 'mobile', 'useful', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 05:10:38', '2024-01-16 05:10:38'),
-(5, 'mobile', 'useful', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 05:14:27', '2024-01-16 05:14:27'),
-(7, 'mobile', 'useful', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 21:27:26', '2024-01-16 21:27:26'),
-(8, 'mobile', 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 21:56:41', '2024-01-16 21:56:41'),
-(9, 'mobile', 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 21:56:46', '2024-01-16 21:56:46'),
-(10, 'mobile', 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 21:56:48', '2024-01-16 21:56:48');
+(12, 'CANDY', 1, NULL, NULL, NULL, NULL, '2024-01-23 23:42:22', '2024-01-24 23:57:17'),
+(13, 'COOKIES', 1, NULL, NULL, NULL, NULL, '2024-01-23 23:42:33', '2024-01-24 23:56:52'),
+(14, 'DAIRY MILK', 0, NULL, NULL, NULL, NULL, '2024-01-23 23:42:44', '2024-01-23 23:42:44'),
+(15, 'DRY CAKE', 0, NULL, NULL, NULL, NULL, '2024-01-23 23:43:02', '2024-01-23 23:43:02'),
+(16, 'HONEY', 0, NULL, NULL, NULL, NULL, '2024-01-23 23:43:12', '2024-01-23 23:43:12'),
+(17, 'DRINKING WATER', 0, NULL, NULL, NULL, NULL, '2024-01-23 23:47:37', '2024-01-23 23:47:37'),
+(19, 'mobile', 0, 'me', 'me', '0.0.0.0', 'chrome', '2024-01-24 00:24:15', '2024-01-24 00:24:15');
 
 -- --------------------------------------------------------
 
@@ -322,9 +296,9 @@ CREATE TABLE `product_items` (
   `is_sms_active` tinyint(1) NOT NULL,
   `is_product_in_stock` tinyint(1) NOT NULL,
   `opening_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `closing_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `closing_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `status` tinyint(1) DEFAULT 0,
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -338,16 +312,7 @@ CREATE TABLE `product_items` (
 --
 
 INSERT INTO `product_items` (`id`, `erp_id`, `product_id`, `sku_number`, `distribution_price`, `trade_price`, `weight_per_unit`, `packing_unit_id`, `selling_pack_size`, `selling_cartoon_size`, `is_new_product`, `is_offer_running`, `is_distribution_git_available`, `is_sms_active`, `is_product_in_stock`, `opening_date`, `closing_date`, `is_active`, `status`, `created_by`, `updated_by`, `ip`, `browser`, `created_at`, `updated_at`) VALUES
-(1, '0', 0, '45600', '339', '2738', '100g', NULL, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 22:15:38', '2024-01-16 22:15:38'),
-(2, '0', 0, '8900000', '339', '2738', '100g', NULL, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, 'nice', 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 22:15:40', '2024-01-16 22:17:25'),
-(4, '2', 11, '45600', '339', '2738', '100g', 1, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 04:31:32', '2024-01-22 04:31:32'),
-(5, '2', 11, '45600', '339', '2738', '100g', 1, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 04:33:11', '2024-01-22 04:33:11'),
-(6, '1', 11, '45600', '339', '2738', '100g', 1, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 04:33:17', '2024-01-22 04:33:17'),
-(7, '1', 11, '45600', '339', '2738', '100g', 1, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 04:38:43', '2024-01-22 04:38:43'),
-(8, '1', 11, '44', '12', '52', '345', 1, '45', '345', 1, 1, 1, 1, 1, '2024-01-22', '2024-01-22', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 04:39:12', '2024-01-22 04:39:12'),
-(9, '5', 11, '44', '12', '52', '345', 1, '45', '345', 1, 1, 1, 1, 1, '2024-01-22', '2024-01-22', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 04:40:07', '2024-01-22 04:40:07'),
-(10, 'abc45', 11, '45600', '339', '2738', '100g', 1, '300', '9000', 1, 0, 0, 0, 1, '2024-01-16', '2024-01-16', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 04:43:30', '2024-01-22 04:43:30'),
-(11, '8', 11, '44', '12', '52', '345', 1, '45', '345', 1, 1, 1, 1, 1, '2024-01-22', '2024-01-22', 1, '1', NULL, NULL, NULL, NULL, '2024-01-22 05:02:16', '2024-01-22 05:02:16');
+(17, '401', 17, 'FG.PUSTI.WATER.500ML', '20000', '1200', '60L', 7, '12', '24', 1, 1, 1, 1, 0, '2024-01-01', '2024-01-31', 1, 1, NULL, NULL, NULL, NULL, '2024-01-23 23:54:48', '2024-01-25 00:20:09');
 
 -- --------------------------------------------------------
 
@@ -372,9 +337,7 @@ CREATE TABLE `product_marketing_links` (
 --
 
 INSERT INTO `product_marketing_links` (`id`, `link`, `product_id`, `created_by`, `modified_by`, `ip`, `browser`, `created_at`, `updated_at`) VALUES
-(1, 'www.abhs', NULL, 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 22:23:01', '2024-01-16 22:23:01'),
-(2, 'www.abhs', NULL, 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 22:23:04', '2024-01-16 22:23:04'),
-(3, 'www.wxyz', NULL, 'me', 'me', '0.0.0.0', 'chrome', '2024-01-16 22:23:05', '2024-01-16 22:24:28');
+(9, 'https://techknowgram.com', 17, NULL, NULL, NULL, NULL, '2024-01-23 23:55:21', '2024-01-23 23:55:21');
 
 -- --------------------------------------------------------
 
@@ -494,13 +457,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `discounts`
 --
 ALTER TABLE `discounts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -518,7 +481,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `packaging_units`
 --
 ALTER TABLE `packaging_units`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -530,31 +493,31 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `products_meta_data`
 --
 ALTER TABLE `products_meta_data`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `product_categories`
 --
 ALTER TABLE `product_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `product_items`
 --
 ALTER TABLE `product_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `product_marketing_links`
 --
 ALTER TABLE `product_marketing_links`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
