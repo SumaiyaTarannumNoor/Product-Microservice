@@ -11,6 +11,14 @@ class Discount extends Model
 
     protected $fillable = [
         'product_id',
+        'sku_name',
+        'division',
+        'region',
+        'zone',
+        'distributor',
+        'discount_offer',
+        'if_buy_quantity',
+        'free_offer',
         'is_fixed_discount',
         'discount_amount',
         'start_date',

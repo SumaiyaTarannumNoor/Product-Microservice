@@ -29,7 +29,15 @@ class DiscountController extends Controller
     {
    
         $request->validate([
-            'product_id' => 'nullable|exists:products,id',
+            'product_id' => 'required|exists:products,id',
+            'sku_name' => 'nullable|string',
+            'division' => 'nullable|string',
+            'region' => 'nullable|string',
+            'zone' => 'nullable|string',
+            'distributor' => 'nullable|string',
+            'discount_offer' => 'nullable|string',
+            'if_buy_quantity' => 'nullable',
+            'free_offer' => 'nullable|string',
             'is_fixed_discount' => 'required|boolean',
             'discount_amount' => 'required|string',
             'start_date' => 'required|date',
@@ -50,18 +58,26 @@ class DiscountController extends Controller
     public function update(Request $request, $id)
     {
     
-            $request->validate([
-                'product_id' => 'nullable|exists:products,id',
-                'is_fixed_discount' => 'required|boolean',
-                'discount_amount' => 'required|string',
-                'start_date' => 'required|date',
-                'end_date' => 'required|date',
-                'status' => 'nullable|string',
-                'created_by' => 'nullable|string|max:255',
-                'updated_by' => 'nullable|string|max:255',
-                'ip' => 'nullable|ip',
-                'browser' => 'nullable|string|max:255',
-            ]);
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'sku_name' => 'nullable|string',
+            'division' => 'nullable|string',
+            'region' => 'nullable|string',
+            'zone' => 'nullable|string',
+            'distributor' => 'nullable|string',
+            'discount_offer' => 'nullable|string',
+            'if_buy_quantity' => 'nullable',
+            'free_offer' => 'nullable|string',
+            'is_fixed_discount' => 'required|boolean',
+            'discount_amount' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'status' => 'nullable|string',
+            'created_by' => 'nullable|string|max:255',
+            'updated_by' => 'nullable|string|max:255',
+            'ip' => 'nullable|ip',
+            'browser' => 'nullable|string|max:255',
+        ]);
 
         $discounts = Discount::findOrFail($id);
         $discounts->update($request->all());
