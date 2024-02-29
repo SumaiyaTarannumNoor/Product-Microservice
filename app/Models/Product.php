@@ -19,6 +19,8 @@ class Product extends Model
         'brand_id',
         'category_id',
         'benchmark_line',
+        'factory1',
+        'factory2',
         'status',
         'created_by',
         'updated_by',

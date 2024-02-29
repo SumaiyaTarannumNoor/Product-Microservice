@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 29, 2024 at 07:06 AM
+-- Generation Time: Feb 29, 2024 at 08:38 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -133,7 +133,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2024_01_16_090546_add_status_to_brands_table', 7),
 (14, '2024_01_16_092549_add_status_to_discounts_table', 8),
 (15, '2024_01_17_043059_update_column_name_in_products_meta_data_table', 9),
-(16, '2024_02_29_055842_add_column_to_the_table', 10);
+(16, '2024_02_29_055842_add_column_to_the_table', 10),
+(17, '2024_02_29_073252_add_column_to_products_table', 11);
 
 -- --------------------------------------------------------
 
@@ -215,20 +216,22 @@ CREATE TABLE `products` (
   `ip` varchar(255) DEFAULT NULL,
   `browser` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `factory1` varchar(255) DEFAULT NULL,
+  `factory2` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `product_key`, `product_english_name`, `product_bengali_name`, `summary`, `product_book`, `marketing_communication_link_id`, `brand_id`, `category_id`, `benchmark_line`, `status`, `created_by`, `updated_by`, `ip`, `browser`, `created_at`, `updated_at`) VALUES
-(17, 'WATER.500 ML', 'WATER.500 ML', 'ড্রিংকিং ওয়াটার ৫০০ মি.লি.', 'This Is New Product.', 'FG.PUSTI.WATER.500ML', 'N/A', 19, 17, 'TTL', 0, NULL, NULL, NULL, NULL, '2024-01-23 23:50:01', '2024-01-25 01:18:50'),
-(21, '23-434-78', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 19, 15, 'ATL', 0, NULL, NULL, NULL, NULL, '2024-02-28 03:15:06', '2024-02-28 03:15:06'),
-(22, '23-78', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 19, 15, 'ATL', 0, NULL, NULL, NULL, NULL, '2024-02-28 03:18:43', '2024-02-28 03:18:43'),
-(23, '23-78-89', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 19, 15, 'ATL', 0, NULL, NULL, NULL, NULL, '2024-02-28 03:21:50', '2024-02-28 03:21:50'),
-(24, '23-78-90', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 19, 15, 'ATL', 0, NULL, NULL, NULL, NULL, '2024-02-28 03:21:59', '2024-02-28 03:21:59'),
-(25, '23-78980', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 19, 15, 'ATL', 0, NULL, NULL, NULL, NULL, '2024-02-28 03:54:38', '2024-02-28 03:54:38');
+INSERT INTO `products` (`id`, `product_key`, `product_english_name`, `product_bengali_name`, `summary`, `product_book`, `marketing_communication_link_id`, `brand_id`, `category_id`, `benchmark_line`, `status`, `created_by`, `updated_by`, `ip`, `browser`, `created_at`, `updated_at`, `factory1`, `factory2`) VALUES
+(17, 'WATER.500 ML', 'WATER.500 ML', 'ড্রিংকিং ওয়াটার ৫০০ মি.লি.', 'This Is New Product.', 'FG.PUSTI.WATER.500ML', 'N/A', 19, 17, 'TTL', 0, NULL, NULL, NULL, NULL, '2024-01-23 23:50:01', '2024-01-25 01:18:50', NULL, NULL),
+(21, '23-434-78', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 19, 15, 'ATL', 0, NULL, NULL, NULL, NULL, '2024-02-28 03:15:06', '2024-02-28 03:15:06', NULL, NULL),
+(22, '23-78', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 19, 15, 'ATL', 0, NULL, NULL, NULL, NULL, '2024-02-28 03:18:43', '2024-02-28 03:18:43', NULL, NULL),
+(23, '23-78-89', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 19, 15, 'ATL', 0, NULL, NULL, NULL, NULL, '2024-02-28 03:21:50', '2024-02-28 03:21:50', NULL, NULL),
+(24, '23-78-90', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 19, 15, 'ATL', 0, NULL, NULL, NULL, NULL, '2024-02-28 03:21:59', '2024-02-28 03:21:59', NULL, NULL),
+(25, '23-78980', 'dss', 'sjd', 'good product', 'er', 'www.ssk', 19, 15, 'ATL', 0, NULL, NULL, NULL, NULL, '2024-02-28 03:54:38', '2024-02-28 03:54:38', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -489,7 +492,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `packaging_units`
