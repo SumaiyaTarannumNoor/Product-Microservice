@@ -16,6 +16,10 @@ class ProductController extends Controller
         $products = $products->map(function ($products) {$products['status'] = (bool) $products['status'];
             return $products;
         });
+
+        $products = $products->map(function ($products) {$products['status_new'] = (bool) $products['status_new'];
+            return $products;
+        });
     }
 
     public function show($id)
@@ -29,18 +33,29 @@ class ProductController extends Controller
     public function store(Request $request)
     {
             $request->validate([
-                'product_key' => 'required|string|max:255|unique:products,product_key,',
+                // 'product_key' => 'required|string|max:255|unique:products,product_key,',
+                // 'summary' => 'required|string',
+                // 'product_book' => 'required|string',
+                // 'benchmark_line' => 'required|in:ATL,BTL,TTL',
+                'brand_id' => 'required',
+                'category_id' => 'required',
                 'product_english_name' => 'required|string|max:255',
                 'product_bengali_name' => 'required|string|max:255',
-                'summary' => 'required|string',
-                'product_book' => 'required|string',
-                'marketing_communication_link_id' => 'required|string',
-                'brand_id' => 'required|exists:brands,id',
-                'category_id' => 'required|exists:product_categories,id',
-                'benchmark_line' => 'required|in:ATL,BTL,TTL',
                 'factory1' => 'nullable|string',
                 'factory2'=> 'nullable|string',
-                'status' => 'nullable|string',
+                'sku_name' => 'required|string',
+                'distribution_price' => 'required',
+                'trade_price' => 'required',
+                'erp_id' => 'required',
+                'unit' => 'required|string|max:255',
+                'weight_pcs' => 'required|integer',
+                'pcs_ctn' => 'required|integer',
+                'product_open_date ' => 'nullable|date',
+                'closing_date' => 'nullable|date',
+                'marketing_communication_link_id' => 'nullable|string',
+                'image_url' => 'nullable|string',
+                'status' => 'nullable|boolean',
+                'status_new' => 'nullable|boolean',
                 'created_by' => 'nullable|string|max:255',
                 'updated_by' => 'nullable|string|max:255',
                 'ip' => 'nullable|ip',
@@ -54,18 +69,25 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
             $request->validate([
-                'product_key' => 'required|string|max:255|unique:products,product_key,' . $id,
+                'brand_id' => 'required',
+                'category_id' => 'required',
                 'product_english_name' => 'required|string|max:255',
                 'product_bengali_name' => 'required|string|max:255',
-                'summary' => 'required|string',
-                'product_book' => 'required|string',
-                'marketing_communication_link_id' => 'required|string',
-                'brand_id' => 'required|exists:brands,id',
-                'category_id' => 'required|exists:product_categories,id',
-                'benchmark_line' => 'required|in:ATL,BTL,TTL',
                 'factory1' => 'nullable|string',
                 'factory2'=> 'nullable|string',
-                'status' => 'nullable|string',
+                'sku_name' => 'required|string',
+                'distribution_price' => 'required',
+                'trade_price' => 'required',
+                'erp_id' => 'required',
+                'unit' => 'required|string|max:255',
+                'weight_pcs' => 'required|integer',
+                'pcs_ctn' => 'required|integer',
+                'product_open_date ' => 'nullable|date',
+                'closing_date' => 'nullable|date',
+                'marketing_communication_link_id' => 'nullable|string',
+                'image_url' => 'nullable|string',
+                'status' => 'nullable|boolean',
+                'status_new' => 'nullable|boolean',
                 'created_by' => 'nullable|string|max:255',
                 'updated_by' => 'nullable|string|max:255',
                 'ip' => 'nullable|ip',
@@ -90,6 +112,17 @@ class ProductController extends Controller
     {
         $products = Product::find($id);
         $products->update(['status' => !$products->status]);
+
+        $true = true;
+
+        $false = false;
+
+        return $products->refresh();
+    }
+    public function ProductStatusChange($id)
+    {
+        $products = Product::find($id);
+        $products->update(['status_new' => !$products->status_new]);
 
         $true = true;
 

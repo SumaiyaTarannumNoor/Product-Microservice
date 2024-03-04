@@ -42,8 +42,7 @@ class ProductItemController extends Controller
                 'is_distribution_git_available' => 'required|boolean',
                 'is_sms_active' => 'required|boolean',
                 'is_product_in_stock' => 'required|boolean',
-                'opening_date' => 'required|date',
-                'closing_date' => 'nullable|date',
+                
                 'is_active' => 'required|boolean',
                 'status' => 'nullable|string',
                 'created_by' => 'nullable|string|max:255',

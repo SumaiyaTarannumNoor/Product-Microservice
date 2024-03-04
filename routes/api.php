@@ -45,4 +45,6 @@ Route::get('/productCategoryStatusChange/{id}', [ProductCategoryController::clas
 Route::get('/productItemStatusChange/{id}', [ProductItemController::class, 'StatusChange']);
 Route::get('/productMetaDataStatusChange/{id}', [ProductMetaDataController::class, 'StatusChange']);
 
+//New Product Status
+Route::get('/new_productStatusChange/{id}', [ProductController::class, 'ProductStatusChange']);
 
